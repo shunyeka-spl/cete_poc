@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Basic .NET Application which convert html to pdf
+
+Resources:
+    LambdaECRFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: "cete_poc"
+        Timeout: 180
+        MemorySize: 512
+        PackageType: Image
+        ImageUri: "619140547673.dkr.ecr.us-east-1.amazonaws.com/cete_poc:latest"
+        ImageConfig:
+          Command:
+            - "cete_poc::cete_poc.Function::FunctionHandler"
+        Role: "arn:aws:iam::619140547673:role/cete_poc"
